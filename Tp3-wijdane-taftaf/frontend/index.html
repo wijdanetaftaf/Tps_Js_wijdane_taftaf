@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Book Reading Tracker</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Config couleurs plus énergiques -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neonPink: '#f97316',
+            neonPurple: '#a855f7',
+            neonBlue: '#22c55e',
+            darkBg: '#020817'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 text-slate-50 flex flex-col items-center px-4 py-8">
+
+  <!-- Header -->
+  <header class="w-full max-w-4xl flex flex-col gap-2 items-center mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/60 border border-neonPink/60 text-[10px] uppercase tracking-[0.18em] text-neonPink">
+      <span class="w-2 h-2 rounded-full bg-neonPink animate-ping"></span>
+      Reading Progress Dashboard
+    </div>
+    <h1 class="text-3xl md:text-4xl font-extrabold text-center">
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-neonPink via-neonPurple to-neonBlue">
+        Book Reading Tracker
+      </span>
+    </h1>
+    <p class="text-slate-400 text-xs md:text-sm text-center">
+      Ajoute tes livres, visualise ta progression et garde ton énergie au max. 🚀
+    </p>
+  </header>
+
+  <!-- Formulaire -->
+  <section class="w-full max-w-4xl mb-6">
+    <form id="book-form"
+      class="bg-slate-900/80 backdrop-blur-xl border border-slate-700/70 shadow-[0_0_40px_rgba(168,85,247,0.15)] rounded-3xl px-5 py-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <div class="col-span-1 md:col-span-2 flex items-center justify-between mb-1">
+        <h2 class="text-sm font-semibold text-slate-200">
+          Ajouter un nouveau livre
+        </h2>
+        <span class="text-[10px] text-neonPurple uppercase tracking-[0.16em]">
+          powered by TypeScript & MongoDB
+        </span>
+      </div>
+
+      <input name="title" placeholder="Titre du livre"
+        class="p-2.5 rounded-2xl bg-slate-900/90 border border-slate-700 focus:outline-none focus:border-neonPink focus:ring-1 focus:ring-neonPink text-xs"
+        required />
+
+      <input name="author" placeholder="Auteur"
+        class="p-2.5 rounded-2xl bg-slate-900/90 border border-slate-700 focus:outline-none focus:border-neonPurple focus:ring-1 focus:ring-neonPurple text-xs"
+        required />
+
+      <input name="pages" type="number" placeholder="Nombre de pages"
+        class="p-2.5 rounded-2xl bg-slate-900/90 border border-slate-700 focus:outline-none focus:border-neonBlue focus:ring-1 focus:ring-neonBlue text-xs"
+        required />
+
+      <input name="price" type="number" step="0.01" placeholder="Prix"
+        class="p-2.5 rounded-2xl bg-slate-900/90 border border-slate-700 focus:outline-none focus:border-neonPink focus:ring-1 focus:ring-neonPink text-xs"
+        required />
+
+      <input name="pagesRead" type="number" placeholder="Pages lues"
+        class="p-2.5 rounded-2xl bg-slate-900/90 border border-slate-700 focus:outline-none focus:border-neonPurple focus:ring-1 focus:ring-neonPurple text-xs"
+        required />
+
+      <input name="suggestedBy" placeholder="Recommandé par"
+        class="p-2.5 rounded-2xl bg-slate-900/90 border border-slate-700 focus:outline-none focus:border-neonBlue focus:ring-1 focus:ring-neonBlue text-xs" />
+
+      <select name="status"
+        class="p-2.5 rounded-2xl bg-slate-900/90 border border-slate-700 focus:outline-none focus:border-neonPink focus:ring-1 focus:ring-neonPink text-xs">
+        <option>Read</option>
+        <option>Re-read</option>
+        <option>DNF</option>
+        <option>Currently reading</option>
+        <option>Returned Unread</option>
+        <option>Want to read</option>
+      </select>
+
+      <select name="format"
+        class="p-2.5 rounded-2xl bg-slate-900/90 border border-slate-700 focus:outline-none focus:border-neonPurple focus:ring-1 focus:ring-neonPurple text-xs">
+        <option>Print</option>
+        <option>PDF</option>
+        <option>Ebook</option>
+        <option>AudioBook</option>
+      </select>
+
+      <button
+        class="col-span-1 md:col-span-2 mt-1 bg-gradient-to-r from-neonPink via-neonPurple to-neonBlue hover:from-neonPink/90 hover:via-neonPurple/90 hover:to-neonBlue/90 text-white py-2.5 rounded-2xl text-xs font-semibold tracking-wide shadow-[0_8px_24px_rgba(79,70,229,0.5)] transition-all active:scale-[0.97]">
+        + Ajouter le livre
+      </button>
+    </form>
+  </section>
+
+  <!-- Stats -->
+  <section class="w-full max-w-4xl mb-4 flex flex-col md:flex-row gap-2 md:items-center md:justify-between text-[10px]">
+    <div
+      class="flex items-center gap-2 px-3 py-2 rounded-2xl bg-slate-900/80 border border-neonPink/40 text-neonPink shadow-[0_0_18px_rgba(249,115,22,0.35)]">
+      <span class="w-2 h-2 rounded-full bg-neonPink animate-pulse"></span>
+      <span id="total-books">Total books: 0</span>
+    </div>
+    <div
+      class="flex items-center gap-2 px-3 py-2 rounded-2xl bg-slate-900/80 border border-neonBlue/40 text-neonBlue shadow-[0_0_18px_rgba(34,197,94,0.35)]">
+      <span class="w-2 h-2 rounded-full bg-neonBlue animate-pulse"></span>
+      <span id="total-pages">Total pages read: 0</span>
+    </div>
+  </section>
+
+  <!-- Liste des livres -->
+  <section id="book-list" class="w-full max-w-4xl space-y-3 pb-8">
+    <!-- cartes générées en JS -->
+  </section>
+
+  <!-- Script TypeScript compilé -->
+  <script type="module" src="./dist/main.js"></script>
+</body>
+</html>
