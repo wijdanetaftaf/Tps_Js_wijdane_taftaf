@@ -1,0 +1,45 @@
+doctype html
+html(lang="fr")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title TP2 - Auth + Books
+    // Tailwind (CDN)
+    script(src="https://cdn.tailwindcss.com")
+    // Palette perso (facultatif)
+    script.
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: { 50:'#eef2ff', 100:'#e0e7ff', 500:'#6366f1', 600:'#5458ec', 700:'#4f46e5' }
+            },
+            boxShadow: {
+              soft: '0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)'
+            }
+          }
+        }
+      }
+  body(class="min-h-screen bg-gradient-to-br from-brand-50 to-white text-gray-800")
+    // NAV
+    header(class="sticky top-0 z-10 backdrop-blur bg-white/70 border-b border-white/50")
+      .max-w-5xl.mx-auto.px-4.py-3.flex.items-center.justify-between
+        a(href="/books", class="flex items-center gap-2 text-brand-700 font-semibold")
+          span(class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand-100 text-brand-700") 📚
+          | TP2 Books
+        if user
+          form(method="post", action="/logout")
+            button(type="submit", class="px-3 py-1.5 rounded-lg bg-red-500 hover:bg-red-600 text-white transition")
+              | Logout
+        else
+          .flex.items-center.gap-2
+            a(href="/login", class="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white transition") Login
+            a(href="/register", class="px-3 py-1.5 rounded-lg border border-brand-600 text-brand-700 hover:bg-brand-50 transition") Register
+
+    // PAGE
+    main(class="max-w-5xl mx-auto px-4 py-8")
+      block content
+
+    // FOOTER
+    footer(class="mt-16 pb-8 text-center text-sm text-gray-500")
+      | © #{new Date().getFullYear()} – TP2 (Pug · Passport · Mongo · Tailwind)
