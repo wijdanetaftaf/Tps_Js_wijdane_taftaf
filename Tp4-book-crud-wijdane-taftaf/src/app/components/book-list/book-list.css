@@ -1,0 +1,62 @@
+h2 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+a {
+  text-decoration: none;
+  color: #3498db;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.book-info {
+  font-size: 16px;
+}
+
+.book-actions button,
+.book-actions a {
+  margin-left: 10px;
+}
+button {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+button:first-child {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.book-actions a {
+  background-color: #f1c40f;
+  color: black;
+  padding: 6px 10px;
+  border-radius: 5px;
+}

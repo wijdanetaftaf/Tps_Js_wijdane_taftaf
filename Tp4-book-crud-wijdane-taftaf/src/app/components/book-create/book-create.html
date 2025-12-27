@@ -1,0 +1,17 @@
+<h2>➕ Add Book</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div>
+    <label>Title</label><br>
+    <input type="text" formControlName="title">
+  </div>
+
+  <div>
+    <label>Author</label><br>
+    <input type="text" formControlName="author">
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">
+    Save
+  </button>
+</form>

@@ -1,0 +1,20 @@
+<h2>📚 Book List</h2>
+
+<p style="color: green; font-weight: bold;">
+  Nombre de livres : {{ books.length }}
+</p>
+
+<a routerLink="/create">➕ Add Book</a>
+
+<ul>
+  <li *ngFor="let book of books">
+    <div class="book-info">
+      <strong>{{ book.title }}</strong> — {{ book.author }}
+    </div>
+
+    <div class="book-actions">
+      <button (click)="deleteBook(book.id)">❌ Delete</button>
+      <a [routerLink]="['/edit', book.id]">✏️ Edit</a>
+    </div>
+  </li>
+</ul>
